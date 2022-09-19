@@ -12,6 +12,7 @@ public class Paddle extends Actor
     private int width;
     private int height;
     private int dx;
+    // private int speed;
 
     /**
      * Constructs a new paddle with the given dimensions.
@@ -30,8 +31,11 @@ public class Paddle extends Actor
      */
     public void act() 
     {
-        tryChangeDirection();
-        setLocation(getX() + dx, getY());
+        // tryChangeDirection();
+        keyInput();
+        checkForWorldEdges();
+       // tryChangeDirection();
+        // setLocation(getX() + dx, getY());
     }    
 
     /**
@@ -41,11 +45,36 @@ public class Paddle extends Actor
     {
         //Check to see if we are touching the outer boundaries of the world:
         // IF we are touching the right boundary OR we are touching the left boundary:
-        if(getX() + width/2 >= getWorld().getWidth() || getX() - width/2 <= 0)
+    if(getX() + width/2 >= getWorld().getWidth() || getX() - width/2 <= 0)
         {
             //Change our 'x' direction to the inverted direction:
             dx = dx * -1;
         }
+    }
+    
+    private void keyInput(){
+        if(Greenfoot.isKeyDown("right")){
+            setLocation(getX() + dx, getY());
+        }
+         if(Greenfoot.isKeyDown("left")){
+            setLocation(getX() - dx, getY());
+        }
+    }
+    
+    private void checkForWorldEdges(){
+        int worldWidth = getWorld().getWidth();
+        int spriteWidth = getImage().getWidth()/2;
+    
+        // check if sprite width > worldWidth 
+        if(getX() >= worldWidth - spriteWidth){
+           // turn(180);
+        }
+                
+        // if (dx > 0 && getX() == getWorld().getLength() -1 ||
+          // (speed < 0 && getX() == 0)) 
+          // speed = -speed;
+          // setLocation(getX() +speed, getY());
+        
     }
 
     /**
