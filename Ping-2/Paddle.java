@@ -64,18 +64,12 @@ public class Paddle extends Actor
     private void checkForWorldEdges(){
         int worldWidth = getWorld().getWidth();
         int spriteWidth = getImage().getWidth()/2;
-        
-        
+    
         // check if sprite width > worldWidth 
-        // if(getX() >= worldWidth - spriteWidth){
-            // turn(180);
-        
-        // }
-        
-        if(getX() + width/2 >= getWorld().getWidth() || getX() - width/2 <= 0){
-            
-        } 
-        
+        if(getX() >= worldWidth - spriteWidth){
+           // turn(180);
+        }
+                
         // if (dx > 0 && getX() == getWorld().getLength() -1 ||
           // (speed < 0 && getX() == 0)) 
           // speed = -speed;
