@@ -20,12 +20,14 @@ public class Ball extends Actor
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
     private int delay;
+    private int hit;
 
     /**
      * Contructs the ball and sets it in motion!
      */
     public Ball()
     {
+        hit = 0;
         createImage();
         init();
     }
@@ -57,10 +59,25 @@ public class Ball extends Actor
             checkBounceOffWalls();
             checkBounceOffCeiling();
             checkPaddleCollision();
+            checkHits();
             checkRestart();
         }
     }    
 
+    private void checkHits(){
+        boolean touching = isTouching(CPUPaddle.class);
+        if(touching){
+            hit++;
+            if(hit > 2){
+                speed++;
+            }
+            
+            
+        }
+        // if(touching && hit%2 == 0){
+            // speed++;
+        // }
+    }
     /**
      * Returns true if the ball is touching one of the side walls.
      */
@@ -123,11 +140,12 @@ public class Ball extends Actor
         }
     }
     
+
     private void checkPaddleCollision(){
-        boolean touching = isTouching(Paddle.class);
+        boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
         
         if(touching){
-            speed = speed * - 1;        
+            speed = speed * - 1;  
         }
          
     }
