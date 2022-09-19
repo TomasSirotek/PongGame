@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 
 
 /**
@@ -17,6 +18,7 @@ public class Ball extends Actor
     private int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
+    private boolean hasTouchedPaddle;
     private int delay;
 
     /**
@@ -54,6 +56,7 @@ public class Ball extends Actor
             move(speed);
             checkBounceOffWalls();
             checkBounceOffCeiling();
+            checkPaddleCollision();
             checkRestart();
         }
     }    
@@ -119,6 +122,16 @@ public class Ball extends Actor
             hasBouncedVertically = false;
         }
     }
+    
+    private void checkPaddleCollision(){
+        boolean touching = isTouching(Paddle.class);
+        
+        if(touching){
+            speed = speed * - 1;        
+        }
+         
+    }
+    
 
     /**
      * Check to see if the ball should be restarted.
@@ -162,7 +175,7 @@ public class Ball extends Actor
         delay = DELAY_TIME;
         hasBouncedHorizontally = false;
         hasBouncedVertically = false;
-        setRotation(Greenfoot.getRandomNumber(STARTING_ANGLE_WIDTH)+STARTING_ANGLE_WIDTH/2);
+        setRotation(Greenfoot.getRandomNumber(STARTING_ANGLE_WIDTH) + STARTING_ANGLE_WIDTH/2);
     }
 
 }
