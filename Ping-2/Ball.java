@@ -21,6 +21,8 @@ public class Ball extends Actor
     private boolean hasTouchedPaddle;
     private int delay;
     private int hit;
+    private boolean isReverted;
+    private boolean canSeePaddle;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -132,6 +134,7 @@ public class Ball extends Actor
             if (! hasBouncedVertically)
             {
                 revertVertically();
+                canSeePaddle = false;
             }
         }
         else
@@ -142,10 +145,37 @@ public class Ball extends Actor
     
 
     private void checkPaddleCollision(){
+        // boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
+         
+                
+        
+        
+        
+        
+        // check if canSeePaddle if false do not bounce 
+        // reverted verticaly 
+        // else can see paddle to false;
+        // boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
+         
+        // if(canSeePaddle){
+            // /// nothing 
+        // }else if (touching && !isReverted) {
+            // revertVertically();
+            // canSeePaddle = true;
+        // }else {
+            // isReverted = false;
+        // }
+        // 
         boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
         
+
         if(touching){
-            speed = speed * - 1;  
+              if(!isReverted){
+                revertVertically();
+                canSeePaddle = true;
+            } else {
+                isReverted = false;
+            } 
         }
          
     }
