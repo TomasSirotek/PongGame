@@ -20,6 +20,8 @@ public class Ball extends Actor
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
     private int delay;
+    private boolean isReversed;
+    private boolean canSeePaddle;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -115,6 +117,7 @@ public class Ball extends Actor
             if (! hasBouncedVertically)
             {
                 revertVertically();
+                canSeePaddle = false;
             }
         }
         else
@@ -127,7 +130,12 @@ public class Ball extends Actor
         boolean touching = isTouching(Paddle.class);
         
         if(touching){
-            speed = speed * - 1;        
+           if(!isReversed){
+                revertVertically(); 
+                canSeePaddle = true;
+           }else {
+               isReversed = false;
+           }
         }
          
     }
