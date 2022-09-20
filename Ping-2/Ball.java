@@ -22,7 +22,7 @@ public class Ball extends Actor
     private int delay;
     private int hit;
     private boolean isReverted;
-    private boolean canSeePaddle;
+    private boolean canSeePaddle = true;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -61,7 +61,8 @@ public class Ball extends Actor
             checkBounceOffWalls();
             checkBounceOffCeiling();
             checkPaddleCollision();
-            checkHits();
+            resetCollision();
+            // checkHits();
             checkRestart();
         }
     }    
@@ -131,7 +132,7 @@ public class Ball extends Actor
     {
         if (isTouchingCeiling())
         {
-            if (! hasBouncedVertically)
+            if (!hasBouncedVertically)
             {
                 revertVertically();
                 canSeePaddle = false;
@@ -145,39 +146,22 @@ public class Ball extends Actor
     
 
     private void checkPaddleCollision(){
-        // boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
-         
-                
         
-        
-        
-        
-        // check if canSeePaddle if false do not bounce 
-        // reverted verticaly 
-        // else can see paddle to false;
-        // boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
-         
-        // if(canSeePaddle){
-            // /// nothing 
-        // }else if (touching && !isReverted) {
-            // revertVertically();
-            // canSeePaddle = true;
-        // }else {
-            // isReverted = false;
-        // }
-        // 
         boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
-        
-
+    
         if(touching){
-              if(!isReverted){
-                revertVertically();
-                canSeePaddle = true;
+              if(!isReverted && canSeePaddle){
+                    revertVertically();
+            }
             } else {
                 isReverted = false;
             } 
         }
-         
+          
+    private void resetCollision(){
+        if(getY() >= getWorld().getHeight() - 100){
+            canSeePaddle = true;
+        }
     }
     
 
@@ -221,6 +205,7 @@ public class Ball extends Actor
     {
         speed = 2;
         delay = DELAY_TIME;
+        canSeePaddle = true;
         hasBouncedHorizontally = false;
         hasBouncedVertically = false;
         setRotation(Greenfoot.getRandomNumber(STARTING_ANGLE_WIDTH) + STARTING_ANGLE_WIDTH/2);
