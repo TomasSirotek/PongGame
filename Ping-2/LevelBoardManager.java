@@ -4,14 +4,14 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ScoreBoardManager  
+public class LevelBoardManager  
 {
     private static int MAX_SCORE;
 
     /**
      * Constructor for objects of class ScoreBoardManager
      */
-    public ScoreBoardManager()
+    public LevelBoardManager()
     {
     }
     
@@ -22,7 +22,4 @@ public class ScoreBoardManager
     public static int getScore(){
         return MAX_SCORE;
     }
-    
-
-  
 }

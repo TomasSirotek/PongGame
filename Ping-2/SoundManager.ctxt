@@ -9,4 +9,6 @@ comment3.params=
 comment3.target=void\ playHitWalls()
 comment4.params=
 comment4.target=void\ playHitFloor()
-numComments=5
+comment5.params=
+comment5.target=void\ playDefaultSong()
+numComments=6

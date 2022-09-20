@@ -12,7 +12,7 @@ public class Paddle extends Actor
     private int width;
     private int height;
     private int dx;
-
+    
     /**
      * Constructs a new paddle with the given dimensions.
      */

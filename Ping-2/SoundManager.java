@@ -12,6 +12,7 @@ public class SoundManager
     private static GreenfootSound hitSoundCeiling;
     private static GreenfootSound hitSoundWalls;
     private static GreenfootSound hitSoundFloor;
+    private static GreenfootSound defaultSound;
 
     static {
         try{
@@ -19,6 +20,7 @@ public class SoundManager
             hitSoundCeiling = new GreenfootSound("hit.wav"); 
             hitSoundWalls = new GreenfootSound("hit.wav"); 
             hitSoundFloor = new GreenfootSound("hit.wav"); 
+            defaultSound = new GreenfootSound("hit.wav"); 
         }catch(Exception e){
             System.out.print(e);
         }
@@ -37,6 +39,10 @@ public class SoundManager
     }
     public static void playHitFloor(){
         hitSoundFloor.play();
+    }
+    
+    public static void playDefaultSong(){
+        defaultSound.play();
     }
 
 }

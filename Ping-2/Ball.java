@@ -16,6 +16,8 @@ public class Ball extends Actor
     private static final int DELAY_TIME = 100;
 
     SoundManager sm;
+    PingWorld w;
+    HealthBar hb;
     private int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
@@ -31,6 +33,7 @@ public class Ball extends Actor
      */
     public Ball()
     {
+        w = (PingWorld)getWorld();
         hit = 0;
         createImage();
         init();
@@ -75,7 +78,7 @@ public class Ball extends Actor
       }
       if(hit%2 == 0){
            speed++;
-           ScoreBoardManager.incrementScore(1);
+           LevelBoardManager.incrementScore(1);
         }
     }
     /**
@@ -151,8 +154,7 @@ public class Ball extends Actor
                     sm.playHitPaddle();
                     if(cp != null){
                         checkHits();
-                    }
-                    
+                    }       
             }
             } else {
                 isReverted = false;
@@ -192,8 +194,14 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
-            init();
-            setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+           
+           // init();
+           // 
+             hb.dealDamage(1);
+             init();
+             setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+             
+            
         }
     }
 

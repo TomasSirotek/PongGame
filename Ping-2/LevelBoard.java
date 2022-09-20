@@ -6,12 +6,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ScoreBoard extends Actor
+public class LevelBoard extends Actor
 {
     private final String SCORE_NAME;
     private int score;
     
-    public ScoreBoard(String scoreName){
+    public LevelBoard(String scoreName){
         SCORE_NAME = scoreName;
         score = 0;
         updateImage();
@@ -25,7 +25,7 @@ public class ScoreBoard extends Actor
     }
     
     public void act(){
-        score = ScoreBoardManager.getScore();
+        score = LevelBoardManager.getScore();
         updateImage();
     }
 }

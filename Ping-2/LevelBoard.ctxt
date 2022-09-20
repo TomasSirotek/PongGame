@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=ScoreBoard
+comment0.target=LevelBoard
 comment0.text=\n\ Write\ a\ description\ of\ class\ ScoreBoard\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=scoreName
-comment1.target=ScoreBoard(java.lang.String)
+comment1.target=LevelBoard(java.lang.String)
 comment2.params=
 comment2.target=void\ updateImage()
 comment3.params=
