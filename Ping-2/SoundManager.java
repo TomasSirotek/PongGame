@@ -8,22 +8,35 @@ import greenfoot.GreenfootSound;
  */
 public class SoundManager  
 {
-    private static GreenfootSound soundEffectHit;
-    private static GreenfootSound soundMusic;
-    private static GreenfootSound gameOver;
-    
+    private static GreenfootSound hitSoundPaddle;
+    private static GreenfootSound hitSoundCeiling;
+    private static GreenfootSound hitSoundWalls;
+    private static GreenfootSound hitSoundFloor;
+
     static {
         try{
-         soundEffectHit = new GreenfootSound("hit.wav");
-        }
-        catch(Exception e){
-            e.printStackTrace();
+            hitSoundPaddle = new GreenfootSound("hit.wav"); 
+            hitSoundCeiling = new GreenfootSound("hit.wav"); 
+            hitSoundWalls = new GreenfootSound("hit.wav"); 
+            hitSoundFloor = new GreenfootSound("hit.wav"); 
+        }catch(Exception e){
             System.out.print(e);
         }
     }
-
     
-    public static void playSoundHit(){
-        soundEffectHit.play();
+    public static void playHitPaddle(){
+        hitSoundPaddle.play();
     }
+    
+    public static void playHitCeiling(){
+        hitSoundCeiling.play();
+    }
+    
+    public static void playHitWalls(){
+        hitSoundWalls.play();
+    }
+    public static void playHitFloor(){
+        hitSoundFloor.play();
+    }
+
 }

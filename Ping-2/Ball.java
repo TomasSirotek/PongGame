@@ -15,12 +15,15 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
+    SoundManager sm;
     private int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
     private int delay;
-    private boolean isReversed;
+    
+    private int hit;
+    private boolean isReverted;
     private boolean canSeePaddle;
 
     /**
@@ -28,6 +31,7 @@ public class Ball extends Actor
      */
     public Ball()
     {
+        hit = 0;
         createImage();
         init();
     }
@@ -59,10 +63,21 @@ public class Ball extends Actor
             checkBounceOffWalls();
             checkBounceOffCeiling();
             checkPaddleCollision();
+            resetCollision();
             checkRestart();
         }
     }    
 
+    private void checkHits(){
+       CPUPaddle cp = checkCPUPaddleCollision();
+        if(cp != null){
+           hit++;
+      }
+      if(hit%2 == 0){
+           speed++;
+           ScoreBoardManager.incrementScore(1);
+        }
+    }
     /**
      * Returns true if the ball is touching one of the side walls.
      */
@@ -114,7 +129,7 @@ public class Ball extends Actor
     {
         if (isTouchingCeiling())
         {
-            if (! hasBouncedVertically)
+            if (!hasBouncedVertically)
             {
                 revertVertically();
                 canSeePaddle = false;
@@ -126,18 +141,46 @@ public class Ball extends Actor
         }
     }
     
+
     private void checkPaddleCollision(){
-        boolean touching = isTouching(Paddle.class);
-        
-        if(touching){
-           if(!isReversed){
-                revertVertically(); 
-                canSeePaddle = true;
-           }else {
-               isReversed = false;
-           }
+        Paddle p = checkPlayerPaddleCollision();
+        CPUPaddle cp = checkCPUPaddleCollision();
+        if(p != null || cp != null){
+              if(!isReverted && canSeePaddle){
+                    revertVertically();
+                    sm.playHitPaddle();
+                    if(cp != null){
+                        checkHits();
+                    }
+                    
+            }
+            } else {
+                isReverted = false;
+            } 
         }
-         
+     
+    private Paddle checkPlayerPaddleCollision(){
+        List<Paddle> p = getObjectsAtOffset(-1, 0, Paddle.class);
+        if(p.isEmpty()){
+            return null;
+        } else {
+            return p.get(0);
+        }
+    }
+    
+     private CPUPaddle checkCPUPaddleCollision(){
+        List<CPUPaddle> cp = getObjectsAtOffset(0, 0, CPUPaddle.class);
+        if(cp.isEmpty()){
+            return null;
+        } else {
+            return cp.get(0);
+        }
+    }
+        
+    private void resetCollision(){
+        if(getY() >= getWorld().getHeight() - 100){
+            canSeePaddle = true;
+        }
     }
     
 
@@ -181,6 +224,7 @@ public class Ball extends Actor
     {
         speed = 2;
         delay = DELAY_TIME;
+        canSeePaddle = true;
         hasBouncedHorizontally = false;
         hasBouncedVertically = false;
         setRotation(Greenfoot.getRandomNumber(STARTING_ANGLE_WIDTH) + STARTING_ANGLE_WIDTH/2);
