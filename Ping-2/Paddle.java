@@ -20,7 +20,7 @@ public class Paddle extends Actor
     {
         this.width = width;
         this.height = height;
-        dx = 1;
+        dx = 2;
         createImage();
     }
 

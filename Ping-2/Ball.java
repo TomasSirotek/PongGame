@@ -22,7 +22,7 @@ public class Ball extends Actor
     private int delay;
     private int hit;
     private boolean isReverted;
-    private boolean canSeePaddle = true;
+    private boolean canSeePaddle;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -62,24 +62,20 @@ public class Ball extends Actor
             checkBounceOffCeiling();
             checkPaddleCollision();
             resetCollision();
-            // checkHits();
+            //checkHits();
             checkRestart();
         }
     }    
 
     private void checkHits(){
         boolean touching = isTouching(CPUPaddle.class);
+        
         if(touching){
-            hit++;
-            if(hit > 2){
-                speed++;
-            }
-            
-            
-        }
-        // if(touching && hit%2 == 0){
-            // speed++;
-        // }
+           hit++;
+        if(hit > 2){
+           speed++;
+        }   
+      }
     }
     /**
      * Returns true if the ball is touching one of the side walls.
@@ -146,9 +142,10 @@ public class Ball extends Actor
     
 
     private void checkPaddleCollision(){
-        
         boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
     
+        Paddle p = (Paddle)getObjectsAtOffset(0, 0, Paddle.class);
+        CPUPaddle cp = (CPUPaddle)getOneIntersectingObject(CPUPaddle.class);
         if(touching){
               if(!isReverted && canSeePaddle){
                     revertVertically();
