@@ -62,14 +62,14 @@ public class Ball extends Actor
             checkBounceOffCeiling();
             checkPaddleCollision();
             resetCollision();
-            //checkHits();
+            checkHits();
             checkRestart();
         }
     }    
 
     private void checkHits(){
         boolean touching = isTouching(CPUPaddle.class);
-        
+    
         if(touching){
            hit++;
         if(hit > 2){
@@ -142,11 +142,10 @@ public class Ball extends Actor
     
 
     private void checkPaddleCollision(){
-        boolean touching = isTouching(Paddle.class) || isTouching(CPUPaddle.class);
     
-        Paddle p = (Paddle)getObjectsAtOffset(0, 0, Paddle.class);
-        CPUPaddle cp = (CPUPaddle)getOneIntersectingObject(CPUPaddle.class);
-        if(touching){
+        Paddle p = checkPlayerPaddleCollision();
+        CPUPaddle cp = checkCPUPaddleCollision();
+        if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
                     revertVertically();
             }
@@ -154,7 +153,25 @@ public class Ball extends Actor
                 isReverted = false;
             } 
         }
-          
+     
+    private Paddle checkPlayerPaddleCollision(){
+        List<Paddle> p = getObjectsAtOffset(-1, 0, Paddle.class);
+        if(p.isEmpty()){
+            return null;
+        } else {
+            return p.get(0);
+        }
+    }
+    
+     private CPUPaddle checkCPUPaddleCollision(){
+        List<CPUPaddle> cp = getObjectsAtOffset(-1, 0, CPUPaddle.class);
+        if(cp.isEmpty()){
+            return null;
+        } else {
+            return cp.get(0);
+        }
+    }
+        
     private void resetCollision(){
         if(getY() >= getWorld().getHeight() - 100){
             canSeePaddle = true;
