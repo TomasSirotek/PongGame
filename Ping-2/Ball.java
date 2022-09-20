@@ -15,6 +15,7 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
+    SoundManager sm;
     private int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
@@ -71,8 +72,9 @@ public class Ball extends Actor
         if(cp != null){
            hit++;
       }
-      if(hit > 10){
+      if(hit%2 == 0){
            speed++;
+           ScoreBoardManager.incrementScore(1);
         }
     }
     /**
@@ -145,6 +147,7 @@ public class Ball extends Actor
         if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
                     revertVertically();
+                    sm.playHitPaddle();
                     if(cp != null){
                         checkHits();
                     }

@@ -26,6 +26,7 @@ public class PingWorld extends World
             addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
             addObject(new Paddle(100,20), 60, WORLD_HEIGHT - 50);
             addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
+            addObject(new ScoreBoard("LEVEL"),450, WORLD_HEIGHT - 680);
         }
         else
         {
