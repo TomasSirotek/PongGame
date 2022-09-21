@@ -28,6 +28,8 @@ public class Ball extends Actor
     SoundManager sm;
     PingWorld w;
     HealthBar hb;
+    
+    GifImage myGif = new GifImage("pumpkin.gif");
 
     /**
      * Contructs the ball and sets it in motion!
@@ -36,19 +38,8 @@ public class Ball extends Actor
     {
         w = (PingWorld)getWorld();
         hit = 0;
-        createImage();
+        animationOfGif();
         init(speed);
-    }
-
-    /**
-     * Creates and sets an image of a black ball to this actor.
-     */
-    private void createImage()
-    {
-        GreenfootImage ballImage = new GreenfootImage(BALL_SIZE,BALL_SIZE);
-        ballImage.setColor(Color.ORANGE);
-        ballImage.fillOval(0, 0, BALL_SIZE, BALL_SIZE);
-        setImage(ballImage);
     }
 
     /**
@@ -64,13 +55,26 @@ public class Ball extends Actor
         else
         {
             move(speed);
+            setImage(myGif.getCurrentImage());
             checkBounceOffWalls();
             checkBounceOffCeiling();
             checkPaddleCollision();
             resetCollision();
             checkRestart();
         }
-    }    
+    }
+    
+    private void animationOfGif(){
+    {
+       int scalePercent = 20;
+       for (GreenfootImage image : myGif.getImages())
+    {
+        int wide = image.getWidth()*scalePercent/100;
+        int high = image.getHeight()*scalePercent/100;
+        image.scale(wide, high);
+    }
+}
+    }
 
     private void checkHits(){
        CPUPaddle cp = checkCPUPaddleCollision();
