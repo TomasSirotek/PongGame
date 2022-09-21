@@ -14,7 +14,7 @@ public class HealthBar extends Actor
         this.health = health;       
     }
     public void act(){
-        setImages();
+        updateImages();
     }
     public int getHealth(){
         return health;
@@ -26,7 +26,7 @@ public class HealthBar extends Actor
         health += amount;
     }
     
-    private void setImages(){
+    private void updateImages(){
         health = getHealth();
         if (health >= 3) {
                 setImage("heart3.png");

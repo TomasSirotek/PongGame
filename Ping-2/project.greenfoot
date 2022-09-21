@@ -1,7 +1,9 @@
 #Greenfoot project file
+class.CPUPaddle.image=bone.png
 class.Counter.image=Counter.png
 class.HealthBar.image=heart.png
 class.LevelBoard.image=level.png
+class.Paddle.image=bat.png
 dependency1.from=IntroWorld
 dependency1.to=GameState
 dependency1.type=UsesDependency
@@ -60,7 +62,7 @@ dependency26.from=LevelBoard
 dependency26.to=PingWorld
 dependency26.type=UsesDependency
 dependency27.from=CPUPaddle
-dependency27.to=HealthBar
+dependency27.to=PingWorld
 dependency27.type=UsesDependency
 dependency3.from=IntroWorld
 dependency3.to=Screen

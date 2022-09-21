@@ -6,8 +6,7 @@
  */
 public class LevelBoardManager  
 {
-    public static int score;
-    
+    private static int score;
     /**
      * Constructor for objects of class ScoreBoardManager
      */

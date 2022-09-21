@@ -20,15 +20,13 @@ public class Ball extends Actor
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
     private int delay;
-    
     private int hit;
     private boolean isReverted;
     private boolean canSeePaddle;
+    private double hitLocation;
     
     PingWorld w;
-    
     GifImage myGif = new GifImage("pumpkin.gif");
-    private double hitLocation;
 
     /**
      * Contructs the ball and sets it in motion!
