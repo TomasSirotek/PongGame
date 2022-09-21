@@ -12,7 +12,6 @@ public class LevelBoardManager
      */
     public LevelBoardManager()
     {
-        score = 0;
     }
     
     public void incrementScore(int howMuch){

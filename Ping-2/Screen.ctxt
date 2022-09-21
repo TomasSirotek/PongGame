@@ -7,6 +7,7 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=switchStage
 comment3.target=void\ hasInstructions(int)
+comment3.text=\n\ \ 0\ to\ display\ instruction/additional\ text,\ 1\ not\ to\ display\ them\n
 comment4.params=
 comment4.target=void\ setBg()
 numComments=5

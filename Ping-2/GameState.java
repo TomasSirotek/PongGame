@@ -9,7 +9,6 @@ public enum GameState
    PLAYING,
    WON,
    LOST,
-   RESTART,
    DEFAULT,
    NOT_PLAYING
 }

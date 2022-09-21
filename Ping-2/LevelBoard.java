@@ -12,8 +12,6 @@ public class LevelBoard extends Actor
     public  int score;
     private String prefix;
     private GreenfootImage background;
-    LevelBoardManager lbm;
-    PingWorld p;
 
     public LevelBoard()
     {
@@ -29,7 +27,7 @@ public class LevelBoard extends Actor
     }
 
     public void act(){
-        score = lbm.getScore();
+        score = LevelBoardManager.getScore();
         updateImage();
     }
     

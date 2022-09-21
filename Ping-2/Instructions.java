@@ -23,7 +23,6 @@ public class Instructions extends Actor
     
     private void setImage(){
        setImage(new GreenfootImage(instructions, 25, Color.ORANGE, Color.BLACK));
-   
     }
     
 }

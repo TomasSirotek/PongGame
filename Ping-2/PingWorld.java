@@ -20,7 +20,6 @@ public class PingWorld extends Resolution
      */
     public PingWorld(boolean setGame)
     {
-
         addObject( new Screen("startHalloween.jpg","",0), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
         state = GameState.NOT_PLAYING;
         if(setGame){
@@ -53,19 +52,17 @@ public class PingWorld extends Resolution
 
     }
     private void init(){
+        lb = new LevelBoard();
+        c = new Counter();
+        hb = new HealthBar(3);
         GreenfootImage background = getBackground();
         background.setColor(Color.BLACK);
         addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
         addObject(new Paddle(100,20), 60, WORLD_HEIGHT - 50);
         addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
-        lbm = new LevelBoardManager();
-        LevelBoard lb = new LevelBoard();
         addObject(lb,470, WORLD_HEIGHT - 680);
-        c = new Counter();
         addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
-        hb = new HealthBar(3);
         addObject(hb,60, WORLD_HEIGHT - 680);
-
     }
 
     public GameState getGameStatus()

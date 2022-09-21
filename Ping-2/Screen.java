@@ -20,6 +20,9 @@ public class Screen extends Actor
         hasInstructions(switchStage);
     }
 
+    /**
+     *  0 to display instruction/additional text, 1 not to display them
+     */
     private void hasInstructions(int switchStage){
         switch(switchStage){
             case 0:
