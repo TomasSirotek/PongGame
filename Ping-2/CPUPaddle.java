@@ -19,7 +19,6 @@ public class CPUPaddle extends Actor
     {
         this.width = width;
         this.height = height;
-        image = getImage();  
         damageLevel = 3;
         dx = 1;
         createImage();
@@ -37,7 +36,9 @@ public class CPUPaddle extends Actor
     
     private void createImage()
     { 
-        image.scale(80,50);
+        setImage("bone.png");
+        GreenfootImage image = getImage();  
+        image.scale(80,50); 
         setImage(image);
         
     }
@@ -70,8 +71,9 @@ public class CPUPaddle extends Actor
         if (damageLevel == 0) {
                this.setLocation(60, Greenfoot.getRandomNumber(400));
                damageLevel = 3;
-               setImage(image);
-               p.getHealthBar().healthUp(1);        
+               setImage("bone.png");
+              // p.getHealthBar().healthUp(1);  
+              // TODO: Fix problem null exceptions !
         }
     }
     

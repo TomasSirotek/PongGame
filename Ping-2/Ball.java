@@ -88,7 +88,8 @@ public class Ball extends Actor
       }
       if(hit%2 == 0){
            speed++;
-           w.getLevelBoardManager().incrementScore(1);
+           // TODO: Fix problem null exceptions !
+           //w.getLevelBoardManager().incrementScore(1);
         }
     }
     /**
