@@ -9,53 +9,50 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LevelBoard extends Actor
 {
     private static final Color transparent = new Color(0,0,0,0);
-    public int score;
+    public  int score;
     private String prefix;
     private GreenfootImage background;
-    
-     public LevelBoard()
+    LevelBoardManager lbm;
+    PingWorld p;
+
+    public LevelBoard()
     {
         this(new String());
+        score = 0;
     }
-    
+
     public LevelBoard(String prefix){
-        background = getImage();  // get image from class
-         this.prefix = prefix;
+        background = getImage();  
+        this.prefix = prefix;
         score = 0;
         updateImage();
     }
-    
-   //  private void updateImage(){
-       // GreenfootImage img = new GreenfootImage(score + "",30,Color.WHITE,null);
-       // setImage(img);
-    // }
-    
+
     public void act(){
-        score = LevelBoardManager.getScore();
-         updateImage();
+        score = lbm.getScore();
+        updateImage();
     }
     
-     /**
-     * Sets a text prefix that should be displayed before
-     * the counter value (e.g. "Score: ").
-     */
+    public void resetScore(){
+        score = 0;
+    }
+
     public void setPrefix(String prefix)
     {
         this.prefix = prefix;
         updateImage();
     }
-    
+
     private void updateImage()
     {
         GreenfootImage image = new GreenfootImage(background);
         GreenfootImage text = new GreenfootImage(prefix + score, 28, Color.WHITE, transparent);
 
-            image.scale(120,105);
-      
-        
+        image.scale(120,105);
+
         image.drawImage(text, (image.getWidth()-text.getWidth() + 30 )/2, 
-                        (image.getHeight()-text.getHeight())/2);
+            (image.getHeight()-text.getHeight())/2);
         setImage(image);
     }
-    
+
 }

@@ -25,10 +25,8 @@ public class Ball extends Actor
     private boolean isReverted;
     private boolean canSeePaddle;
     
-    SoundManager sm;
     PingWorld w;
-    HealthBar hb;
-    GameState state;
+    
     GifImage myGif = new GifImage("pumpkin.gif");
     private double hitLocation;
 
@@ -56,10 +54,10 @@ public class Ball extends Actor
              delay--;
         }
         if(w.getGameStatus() == GameState.NOT_PLAYING){
-            
+                // play cool soundTrack  
         }
     
-        else if(w.getGameStatus() == GameState.PLAYING)
+        else if(w.getGameStatus() == GameState.PLAYING || w.getGameStatus() != GameState.LOST  )
         {
             move(speed);
             setImage(myGif.getCurrentImage());
@@ -92,7 +90,7 @@ public class Ball extends Actor
       }
       if(hit%2 == 0){
            speed++;
-           LevelBoardManager.incrementScore(1);
+           w.getLevelBoardManager().incrementScore(1);
         }
     }
     /**
@@ -166,7 +164,7 @@ public class Ball extends Actor
         if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
                     revertVertically();
-                    sm.playHitPaddle();
+                    w.getSoundManager().playHitPaddle();
                     if(cp != null){
                         checkHits();
                     }       
@@ -177,20 +175,20 @@ public class Ball extends Actor
         }
      
     private Paddle checkPlayerPaddleCollision(){
-        List<Paddle> p = getObjectsAtOffset(0, 0, Paddle.class);
-        if(p.isEmpty()){
+        Paddle p = (Paddle)getOneObjectAtOffset(0, 0, Paddle.class);
+        if(p == null){
             return null;
         } else {
-            return p.get(0);
+            return p;
         }
     }
     
      private CPUPaddle checkCPUPaddleCollision(){
-        List<CPUPaddle> cp = getObjectsAtOffset(0, 0, CPUPaddle.class);
-        if(cp.isEmpty()){
+        CPUPaddle cp = (CPUPaddle)getOneObjectAtOffset(0, 0, CPUPaddle.class);
+        if(cp == null){
             return null;
         } else {
-            return cp.get(0);
+            return cp;
         }
     }
         
@@ -209,7 +207,7 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
-             hb.dealDamage(1);
+             w.getHealthBar().dealDamage(1);
              init(speed);
              setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
         }
@@ -240,7 +238,7 @@ public class Ball extends Actor
      */
     private void init(double speed)
     {
-        speed = 2;
+        speed = speed;
         delay = DELAY_TIME;
         canSeePaddle = true;
         hasBouncedHorizontally = false;

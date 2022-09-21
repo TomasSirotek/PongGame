@@ -6,16 +6,17 @@
  */
 public class LevelBoardManager  
 {
-    private static int score;
-
+    public static int score;
+    
     /**
      * Constructor for objects of class ScoreBoardManager
      */
     public LevelBoardManager()
     {
+        score = 0;
     }
     
-    public static void incrementScore(int howMuch){
+    public void incrementScore(int howMuch){
         score += howMuch;
     }
     

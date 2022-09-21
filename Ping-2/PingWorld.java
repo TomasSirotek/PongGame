@@ -8,12 +8,13 @@ import greenfoot.*;
  */
 public class PingWorld extends Resolution
 {
-    //  private static GameState gameState;
     HealthBar hb;
+    LevelBoardManager lbm;
     LevelBoard lb;
-
     GameState state;
     Counter c;
+    SoundManager sm;
+    
     /**
      * Constructor for objects of class PingWorld.
      */
@@ -28,10 +29,7 @@ public class PingWorld extends Resolution
     }
 
     public void act(){
-
         String key = Greenfoot.getKey();
-
-        int test = c.getValue(); 
 
         if (state == GameState.NOT_PLAYING) 
         {
@@ -51,37 +49,44 @@ public class PingWorld extends Resolution
         else if ( state == GameState.LOST )
         {
             Greenfoot.setWorld(new GameOverScreen());   
-
         }
 
     }
     private void init(){
-        c = new Counter();
-        addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
-
         GreenfootImage background = getBackground();
         background.setColor(Color.BLACK);
-        // Create a new world with WORLD_WIDTHxWORLD_HEIGHT cells with a cell size of 1x1 pixels.
         addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
         addObject(new Paddle(100,20), 60, WORLD_HEIGHT - 50);
         addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
-
+        lbm = new LevelBoardManager();
         LevelBoard lb = new LevelBoard();
         addObject(lb,470, WORLD_HEIGHT - 680);
-
+        c = new Counter();
+        addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
         hb = new HealthBar(3);
         addObject(hb,60, WORLD_HEIGHT - 680);
 
-    
-
-   
     }
 
     public GameState getGameStatus()
     {
         return state;
-
     } 
+    
+    public LevelBoardManager getLevelBoardManager(){
+        return lbm;
+    }
+    
+    public LevelBoard getLevelBoard(){
+        return lb;
+    }
+    public HealthBar getHealthBar(){
+        return hb;
+    }
+    
+    public SoundManager getSoundManager(){
+        return sm;
+    }
 
 
 }
