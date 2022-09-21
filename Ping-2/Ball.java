@@ -15,10 +15,7 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
-    SoundManager sm;
-    PingWorld w;
-    HealthBar hb;
-    private int speed;
+    private int speed = 2;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
@@ -27,6 +24,10 @@ public class Ball extends Actor
     private int hit;
     private boolean isReverted;
     private boolean canSeePaddle;
+    
+    SoundManager sm;
+    PingWorld w;
+    HealthBar hb;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -36,7 +37,7 @@ public class Ball extends Actor
         w = (PingWorld)getWorld();
         hit = 0;
         createImage();
-        init();
+        init(speed);
     }
 
     /**
@@ -45,7 +46,7 @@ public class Ball extends Actor
     private void createImage()
     {
         GreenfootImage ballImage = new GreenfootImage(BALL_SIZE,BALL_SIZE);
-        ballImage.setColor(Color.BLACK);
+        ballImage.setColor(Color.ORANGE);
         ballImage.fillOval(0, 0, BALL_SIZE, BALL_SIZE);
         setImage(ballImage);
     }
@@ -198,7 +199,7 @@ public class Ball extends Actor
            // init();
            // 
              hb.dealDamage(1);
-             init();
+             init(speed);
              setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
              
             
@@ -228,7 +229,7 @@ public class Ball extends Actor
     /**
      * Initialize the ball settings.
      */
-    private void init()
+    private void init(int speed)
     {
         speed = 2;
         delay = DELAY_TIME;

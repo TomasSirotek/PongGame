@@ -31,9 +31,9 @@ public class CPUPaddle extends Actor
     
       private void createImage()
     {
-        GreenfootImage image = new GreenfootImage(width, height);
-        image.setColor(Color.BLACK);
-        image.fill();
+        setImage("bone.png");
+        GreenfootImage image = getImage();  
+        image.scale(80,50); 
         setImage(image);
     }
     

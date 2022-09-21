@@ -6,10 +6,8 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class IntroWorld extends World
+public class IntroWorld extends Resolution
 {
-    private static final int WORLD_WIDTH = 500;
-    private static final int WORLD_HEIGHT = 700;
     private static GameState gameState;
     
     private String text;
@@ -19,9 +17,7 @@ public class IntroWorld extends World
      */
     public IntroWorld()
     {
-        super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-
-        setBackground();
+        setBackground(); // needs to add screen
         gameState = GameState.NOT_PLAYING;
     }
     
@@ -38,7 +34,7 @@ public class IntroWorld extends World
     private void setBackground(){
         GreenfootImage background = getBackground();
         background.setColor(Color.BLACK);
-        background.drawString("Press ENTER to start", WORLD_WIDTH / 2 - 100, WORLD_HEIGHT / 2);
+        background.drawString("Welcom to the game Press ENTER to start", WORLD_WIDTH / 2 - 100, WORLD_HEIGHT / 2);
     }
     
 }

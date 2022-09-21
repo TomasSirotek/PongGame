@@ -7,12 +7,9 @@ import greenfoot.*;
  * @author The teachers 
  * @version 1
  */
-public class PingWorld extends World
+public class PingWorld extends Resolution
 {
-    private static final int WORLD_WIDTH = 500;
-    private static final int WORLD_HEIGHT = 700;
     private static GameState gameState;
-
     HealthBar hb;
   
     /**
@@ -20,8 +17,7 @@ public class PingWorld extends World
      */
     public PingWorld(boolean gameStarted)
     {
-        super(WORLD_WIDTH, WORLD_HEIGHT, 1);
-        
+        addObject( new Screen("startHalloween.jpg"), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
          
         if(gameStarted){
             init();
