@@ -6,7 +6,7 @@
  */
 public class LevelBoardManager  
 {
-    private static int MAX_SCORE;
+    private static int score;
 
     /**
      * Constructor for objects of class ScoreBoardManager
@@ -16,10 +16,10 @@ public class LevelBoardManager
     }
     
     public static void incrementScore(int howMuch){
-        MAX_SCORE += howMuch;
+        score += howMuch;
     }
     
     public static int getScore(){
-        return MAX_SCORE;
+        return score;
     }
 }

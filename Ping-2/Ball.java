@@ -15,7 +15,7 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
-    private int speed = 1;
+    private int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
@@ -28,8 +28,9 @@ public class Ball extends Actor
     SoundManager sm;
     PingWorld w;
     HealthBar hb;
-    
+    GameState state;
     GifImage myGif = new GifImage("pumpkin.gif");
+    private double hitLocation;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -39,6 +40,7 @@ public class Ball extends Actor
         w = (PingWorld)getWorld();
         hit = 0;
         animationOfGif();
+        speed = 2;
         init(speed);
     }
 
@@ -48,11 +50,16 @@ public class Ball extends Actor
      */
     public void act() 
     {
+        w = (PingWorld)getWorld();
         if (delay > 0)
         {
-            delay--;
+             delay--;
         }
-        else
+        if(w.getGameStatus() == GameState.NOT_PLAYING){
+            
+        }
+    
+        else if(w.getGameStatus() == GameState.PLAYING)
         {
             move(speed);
             setImage(myGif.getCurrentImage());

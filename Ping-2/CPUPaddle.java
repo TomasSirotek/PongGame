@@ -11,9 +11,7 @@ public class CPUPaddle extends Actor
     private int width;
     private int height;
     private int dx;
-    
     private int damageLevel;
-    
     HealthBar h;
     
      public CPUPaddle(int width, int height)
@@ -30,7 +28,7 @@ public class CPUPaddle extends Actor
      */
     public void act()
     {
-      setImageDamage();
+        setImageDamage();
         tryChangeDirection();
         setLocation(getX() + dx, getY());
     }
@@ -48,12 +46,9 @@ public class CPUPaddle extends Actor
      */
     private void tryChangeDirection()
     {
-        //Check to see if we are touching the outer boundaries of the world:
-        // IF we are touching the right boundary OR we are touching the left boundary:
     if(getX() + width/2 >= getWorld().getWidth() || getX() - width/2 <= 0)
         {
-            //Change our 'x' direction to the inverted direction:
-            setLocation(60, Greenfoot.getRandomNumber(400));
+            setLocation(60, Greenfoot.getRandomNumber(360));
         }
     }
     
@@ -73,18 +68,10 @@ public class CPUPaddle extends Actor
                 getImage().scale(80,50);
         }
         if (damageLevel == 0) {
-        
-               // move to random location 
                this.setLocation(60, Greenfoot.getRandomNumber(400));
                damageLevel = 3;
                setImage("bone.png");
-
-        
-               // refill the heart
-               if(h != null){
-                   h.healthUp(1);
-               }
-               //  move random location 
+               h.healthUp(1);        
         }
     }
     

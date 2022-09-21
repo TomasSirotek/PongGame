@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Instructions
-comment0.text=\n\ Write\ a\ description\ of\ class\ Instructions\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=instructions
-comment1.target=Instructions(java.lang.String)
+comment0.text=\n\ Instruction\ class\ that\ takes\ String\ instructions,int\ fontSize,Color\ background,Color\ outline\ as\ parameters\n\n
+comment1.params=instructions\ fontSize\ background\ outline
+comment1.target=Instructions(java.lang.String,\ int,\ greenfoot.Color,\ greenfoot.Color)
 comment2.params=
 comment2.target=void\ setImage()
 numComments=3

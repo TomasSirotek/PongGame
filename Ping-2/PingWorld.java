@@ -11,33 +11,56 @@ public class PingWorld extends Resolution
 {
    //  private static GameState gameState;
     HealthBar hb;
-    // Ball b;
-    // CPUPaddle cp;
+    LevelBoard lb;
     
-  
+    GameState state;
+    Counter c;
     /**
      * Constructor for objects of class PingWorld.
      */
-    public PingWorld(boolean gameStarted)
+    public PingWorld(boolean setGame)
     {
-        // b = new Ball();
-        //cp = new CPUPaddle(100,20);
         
-        addObject( new Screen("startHalloween.jpg",1), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
-         
-        if(gameStarted){
-            init();
-        }
+        addObject( new Screen("startHalloween.jpg","",0), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
+        state = GameState.NOT_PLAYING;
+    if(setGame){
+        init();
+    }     
     }
     
     public void act(){
-         if(hb.getHealth() == 0){
-                 Greenfoot.setWorld(new GameOverScreen());
-                 
+
+        String key = Greenfoot.getKey();
+        
+        int test = c.getValue(); 
+           
+        if (state == GameState.NOT_PLAYING) 
+        {
+            if (c.getValue() == 0 )
+            {
+                removeObject(c);
+                state = GameState.PLAYING;
+            } 
         }
+        else if ( state == GameState.PLAYING )
+        {
+            if (hb.getHealth() == 0)
+            {
+                state = GameState.LOST;
+            } 
+        }
+        else if ( state == GameState.LOST )
+        {
+           Greenfoot.setWorld(new GameOverScreen());   
+             
+        }
+       
+         
     }
     
     private void init(){
+         c = new Counter();
+            addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
 
             GreenfootImage background = getBackground();
             background.setColor(Color.BLACK);
@@ -45,12 +68,24 @@ public class PingWorld extends Resolution
             addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
             addObject(new Paddle(100,20), 60, WORLD_HEIGHT - 50);
             addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
-            addObject(new LevelBoard("LEVEL"),450, WORLD_HEIGHT - 680);
+            
+            LevelBoard lb = new LevelBoard();
+            addObject(lb,470, WORLD_HEIGHT - 680);
             
             hb = new HealthBar(3);
             addObject(hb,60, WORLD_HEIGHT - 680);
+            
+            // addObject(new Level(),450, WORLD_HEIGHT - 680);
+            
+           
              
     }
+    
+     public GameState getGameStatus()
+    {
+        return state;
+        
+    } 
     
 
 
