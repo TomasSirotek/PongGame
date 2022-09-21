@@ -1,6 +1,5 @@
 import greenfoot.*;
 
-
 /**
  * The Ping World is where Balls and Paddles meet to play pong.
  * 
@@ -9,10 +8,10 @@ import greenfoot.*;
  */
 public class PingWorld extends Resolution
 {
-   //  private static GameState gameState;
+    //  private static GameState gameState;
     HealthBar hb;
     LevelBoard lb;
-    
+
     GameState state;
     Counter c;
     /**
@@ -20,20 +19,20 @@ public class PingWorld extends Resolution
      */
     public PingWorld(boolean setGame)
     {
-        
+
         addObject( new Screen("startHalloween.jpg","",0), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
         state = GameState.NOT_PLAYING;
-    if(setGame){
-        init();
-    }     
+        if(setGame){
+            init();
+        }     
     }
-    
+
     public void act(){
 
         String key = Greenfoot.getKey();
-        
+
         int test = c.getValue(); 
-           
+
         if (state == GameState.NOT_PLAYING) 
         {
             if (c.getValue() == 0 )
@@ -51,42 +50,38 @@ public class PingWorld extends Resolution
         }
         else if ( state == GameState.LOST )
         {
-           Greenfoot.setWorld(new GameOverScreen());   
-             
-        }
-       
-         
-    }
-    
-    private void init(){
-         c = new Counter();
-            addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
+            Greenfoot.setWorld(new GameOverScreen());   
 
-            GreenfootImage background = getBackground();
-            background.setColor(Color.BLACK);
-            // Create a new world with WORLD_WIDTHxWORLD_HEIGHT cells with a cell size of 1x1 pixels.
-            addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
-            addObject(new Paddle(100,20), 60, WORLD_HEIGHT - 50);
-            addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
-            
-            LevelBoard lb = new LevelBoard();
-            addObject(lb,470, WORLD_HEIGHT - 680);
-            
-            hb = new HealthBar(3);
-            addObject(hb,60, WORLD_HEIGHT - 680);
-            
-            // addObject(new Level(),450, WORLD_HEIGHT - 680);
-            
-           
-             
+        }
+
     }
+    private void init(){
+        c = new Counter();
+        addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
+
+        GreenfootImage background = getBackground();
+        background.setColor(Color.BLACK);
+        // Create a new world with WORLD_WIDTHxWORLD_HEIGHT cells with a cell size of 1x1 pixels.
+        addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
+        addObject(new Paddle(100,20), 60, WORLD_HEIGHT - 50);
+        addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
+
+        LevelBoard lb = new LevelBoard();
+        addObject(lb,470, WORLD_HEIGHT - 680);
+
+        hb = new HealthBar(3);
+        addObject(hb,60, WORLD_HEIGHT - 680);
+
     
-     public GameState getGameStatus()
+
+   
+    }
+
+    public GameState getGameStatus()
     {
         return state;
-        
+
     } 
-    
 
 
 }
