@@ -9,4 +9,6 @@ comment3.params=
 comment3.target=int\ getHealth()
 comment4.params=damage
 comment4.target=void\ dealDamage(int)
-numComments=5
+comment5.params=
+comment5.target=void\ setImages()
+numComments=6

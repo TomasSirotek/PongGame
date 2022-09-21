@@ -80,6 +80,7 @@ public class Ball extends Actor
        CPUPaddle cp = checkCPUPaddleCollision();
         if(cp != null){
            hit++;
+           cp.dealDamage(1);
       }
       if(hit%2 == 0){
            speed++;

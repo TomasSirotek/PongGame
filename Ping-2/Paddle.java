@@ -12,9 +12,8 @@ public class Paddle extends Actor
     private int width;
     private int height;
     private int dx;
-    
-    
-    private GreenfootImage image1;
+
+    private GreenfootImage image;
     /**
      * Constructs a new paddle with the given dimensions.
      */
@@ -62,8 +61,8 @@ public class Paddle extends Actor
      */
     private void createImage()
     {
-      image1 = new GreenfootImage("bat.png");
-      setImage(image1);
+      image = new GreenfootImage("bat.png");
+      setImage(image);
       GreenfootImage image = getImage();  
       image.scale(140,60);
     }

@@ -12,10 +12,13 @@ public class CPUPaddle extends Actor
     private int height;
     private int dx;
     
+    private int damageLevel;
+    
      public CPUPaddle(int width, int height)
     {
         this.width = width;
         this.height = height;
+        damageLevel = 3;
         dx = 1;
         createImage();
     }
@@ -25,11 +28,12 @@ public class CPUPaddle extends Actor
      */
     public void act()
     {
+        setImageDamage();
         tryChangeDirection();
         setLocation(getX() + dx, getY());
     }
     
-      private void createImage()
+    private void createImage()
     {
         setImage("bone.png");
         GreenfootImage image = getImage();  
@@ -37,7 +41,7 @@ public class CPUPaddle extends Actor
         setImage(image);
     }
     
-       /**
+    /**
      * Will rotate the paddle 180 degrees if the paddle is at worlds edge.
      */
     private void tryChangeDirection()
@@ -49,5 +53,25 @@ public class CPUPaddle extends Actor
             //Change our 'x' direction to the inverted direction:
             setLocation(60, Greenfoot.getRandomNumber(400));
         }
+    }
+    
+    private void setImageDamage(){
+         if (damageLevel >= 3) {
+                setImage("bone.png");
+                getImage().scale(80,50);
+                // play crack sound
+            }
+         if (damageLevel <= 2) {
+                setImage("baby1.png");
+                getImage().scale(90,90);
+            }
+         if (damageLevel <= 1) {
+                setImage("heart1.png");
+                 getImage().scale(90,90);
+            }
+    }
+    
+    public void dealDamage(int damage){
+        damageLevel -= damage;
     }
 }
