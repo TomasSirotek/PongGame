@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=GameOverScreen
+comment0.text=\n\ Game\ over\ screen\ that\ loads\ player\ when\ 0\ of\ lifes\ is\ achieved\n
+comment1.params=
+comment1.target=GameOverScreen()
+comment2.params=
+comment2.target=void\ act()
+numComments=3

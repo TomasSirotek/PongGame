@@ -14,6 +14,19 @@ public class HealthBar extends Actor
         this.health = health;       
     }
     public void act(){
+        updateImages();
+    }
+    public int getHealth(){
+        return health;
+    }
+    public static void dealDamage(int damage){
+        health -= damage;
+    }
+    public static void healthUp(int amount){
+        health += amount;
+    }
+    
+    private void updateImages(){
         health = getHealth();
         if (health >= 3) {
                 setImage("heart3.png");
@@ -28,12 +41,6 @@ public class HealthBar extends Actor
                 setImage("heart1.png");
                  getImage().scale(90,90);
             }
-    }
-    public int getHealth(){
-        return health;
-    }
-    public static void dealDamage(int damage){
-        health -= damage;
     }
     
 }

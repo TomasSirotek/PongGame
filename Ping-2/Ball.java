@@ -15,20 +15,17 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
-    private int speed = 2;
+    private int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
     private int delay;
-    
     private int hit;
     private boolean isReverted;
     private boolean canSeePaddle;
+    private double hitLocation;
     
-    SoundManager sm;
     PingWorld w;
-    HealthBar hb;
-    
     GifImage myGif = new GifImage("pumpkin.gif");
 
     /**
@@ -39,6 +36,7 @@ public class Ball extends Actor
         w = (PingWorld)getWorld();
         hit = 0;
         animationOfGif();
+        speed = 2;
         init(speed);
     }
 
@@ -48,11 +46,16 @@ public class Ball extends Actor
      */
     public void act() 
     {
+        w = (PingWorld)getWorld();
         if (delay > 0)
         {
-            delay--;
+             delay--;
         }
-        else
+        if(w.getGameStatus() == GameState.NOT_PLAYING){
+                // play cool soundTrack  
+        }
+    
+        else if(w.getGameStatus() == GameState.PLAYING || w.getGameStatus() != GameState.LOST  )
         {
             move(speed);
             setImage(myGif.getCurrentImage());
@@ -68,22 +71,24 @@ public class Ball extends Actor
     {
        int scalePercent = 20;
        for (GreenfootImage image : myGif.getImages())
-    {
+        {
         int wide = image.getWidth()*scalePercent/100;
         int high = image.getHeight()*scalePercent/100;
         image.scale(wide, high);
+        setRotation(5);
+        }
     }
-}
     }
 
     private void checkHits(){
        CPUPaddle cp = checkCPUPaddleCollision();
         if(cp != null){
            hit++;
+           cp.dealDamage(1);
       }
       if(hit%2 == 0){
            speed++;
-           LevelBoardManager.incrementScore(1);
+           w.getLevelBoardManager().incrementScore(1);
         }
     }
     /**
@@ -153,10 +158,11 @@ public class Ball extends Actor
     private void checkPaddleCollision(){
         Paddle p = checkPlayerPaddleCollision();
         CPUPaddle cp = checkCPUPaddleCollision();
+        
         if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
                     revertVertically();
-                    sm.playHitPaddle();
+                    w.getSoundManager().playHitPaddle();
                     if(cp != null){
                         checkHits();
                     }       
@@ -167,20 +173,20 @@ public class Ball extends Actor
         }
      
     private Paddle checkPlayerPaddleCollision(){
-        List<Paddle> p = getObjectsAtOffset(-1, 0, Paddle.class);
-        if(p.isEmpty()){
+        Paddle p = (Paddle)getOneObjectAtOffset(0, 0, Paddle.class);
+        if(p == null){
             return null;
         } else {
-            return p.get(0);
+            return p;
         }
     }
     
      private CPUPaddle checkCPUPaddleCollision(){
-        List<CPUPaddle> cp = getObjectsAtOffset(0, 0, CPUPaddle.class);
-        if(cp.isEmpty()){
+        CPUPaddle cp = (CPUPaddle)getOneObjectAtOffset(0, 0, CPUPaddle.class);
+        if(cp == null){
             return null;
         } else {
-            return cp.get(0);
+            return cp;
         }
     }
         
@@ -199,14 +205,9 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
-           
-           // init();
-           // 
-             hb.dealDamage(1);
+             w.getHealthBar().dealDamage(1);
              init(speed);
              setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
-             
-            
         }
     }
 
@@ -233,9 +234,9 @@ public class Ball extends Actor
     /**
      * Initialize the ball settings.
      */
-    private void init(int speed)
+    private void init(double speed)
     {
-        speed = 2;
+        speed = speed;
         delay = DELAY_TIME;
         canSeePaddle = true;
         hasBouncedHorizontally = false;

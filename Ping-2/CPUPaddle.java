@@ -11,11 +11,16 @@ public class CPUPaddle extends Actor
     private int width;
     private int height;
     private int dx;
+    private int damageLevel;
+    private GreenfootImage image;
+    PingWorld p;
     
      public CPUPaddle(int width, int height)
     {
         this.width = width;
         this.height = height;
+        image = getImage();  
+        damageLevel = 3;
         dx = 1;
         createImage();
     }
@@ -25,29 +30,52 @@ public class CPUPaddle extends Actor
      */
     public void act()
     {
+        setImageDamage();
         tryChangeDirection();
         setLocation(getX() + dx, getY());
     }
     
-      private void createImage()
-    {
-        setImage("bone.png");
-        GreenfootImage image = getImage();  
-        image.scale(80,50); 
+    private void createImage()
+    { 
+        image.scale(80,50);
         setImage(image);
+        
     }
     
-       /**
+    /**
      * Will rotate the paddle 180 degrees if the paddle is at worlds edge.
      */
     private void tryChangeDirection()
     {
-        //Check to see if we are touching the outer boundaries of the world:
-        // IF we are touching the right boundary OR we are touching the left boundary:
     if(getX() + width/2 >= getWorld().getWidth() || getX() - width/2 <= 0)
         {
-            //Change our 'x' direction to the inverted direction:
-            setLocation(60, Greenfoot.getRandomNumber(400));
+            setLocation(60, Greenfoot.getRandomNumber(360));
         }
+    }
+    
+    private void setImageDamage(){
+         if (damageLevel >= 3) {
+                setImage("bone.png");
+                getImage().scale(80,50);
+                // play crack sound
+            }
+         if (damageLevel <= 2) {
+                setImage("bone_stage_1.png");
+                getImage().scale(80,50);
+            }
+         if (damageLevel <= 1) {
+                setImage("bone_stage_2.png");
+                getImage().scale(80,50);
+        }
+        if (damageLevel == 0) {
+               this.setLocation(60, Greenfoot.getRandomNumber(400));
+               damageLevel = 3;
+               setImage(image);
+               p.getHealthBar().healthUp(1);        
+        }
+    }
+    
+    public void dealDamage(int damage){
+        damageLevel -= damage;
     }
 }
