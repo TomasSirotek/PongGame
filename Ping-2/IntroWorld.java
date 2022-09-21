@@ -8,17 +8,16 @@ import greenfoot.*;
  */
 public class IntroWorld extends Resolution
 {
-    private static GameState gameState;
+    // private static GameState gameState;
     
     private String text;
-    HealthBar hb;
     /**
      * Constructor for objects of class IntroWorld.
      */
     public IntroWorld()
     {
-        setBackground(); // needs to add screen
-        gameState = GameState.NOT_PLAYING;
+        addObject( new Screen("startHalloween.jpg",0), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
+        // gameState = GameState.NOT_PLAYING;
     }
     
     public void act()
@@ -31,10 +30,6 @@ public class IntroWorld extends Resolution
             }
 }
     
-    private void setBackground(){
-        GreenfootImage background = getBackground();
-        background.setColor(Color.BLACK);
-        background.drawString("Welcom to the game Press ENTER to start", WORLD_WIDTH / 2 - 100, WORLD_HEIGHT / 2);
-    }
+
     
 }

@@ -14,6 +14,8 @@ public class CPUPaddle extends Actor
     
     private int damageLevel;
     
+    HealthBar h;
+    
      public CPUPaddle(int width, int height)
     {
         this.width = width;
@@ -28,7 +30,7 @@ public class CPUPaddle extends Actor
      */
     public void act()
     {
-        setImageDamage();
+      setImageDamage();
         tryChangeDirection();
         setLocation(getX() + dx, getY());
     }
@@ -56,19 +58,34 @@ public class CPUPaddle extends Actor
     }
     
     private void setImageDamage(){
+    
          if (damageLevel >= 3) {
                 setImage("bone.png");
                 getImage().scale(80,50);
                 // play crack sound
             }
          if (damageLevel <= 2) {
-                setImage("baby1.png");
-                getImage().scale(90,90);
+                setImage("bone_stage_1.png");
+                getImage().scale(80,50);
             }
          if (damageLevel <= 1) {
-                setImage("heart1.png");
-                 getImage().scale(90,90);
-            }
+                setImage("bone_stage_2.png");
+                getImage().scale(80,50);
+        }
+        if (damageLevel == 0) {
+        
+               // move to random location 
+               this.setLocation(60, Greenfoot.getRandomNumber(400));
+               damageLevel = 3;
+               setImage("bone.png");
+
+        
+               // refill the heart
+               if(h != null){
+                   h.healthUp(1);
+               }
+               //  move random location 
+        }
     }
     
     public void dealDamage(int damage){

@@ -22,6 +22,9 @@ public class HealthBar extends Actor
     public static void dealDamage(int damage){
         health -= damage;
     }
+    public static void healthUp(int amount){
+        health += amount;
+    }
     
     private void setImages(){
         health = getHealth();

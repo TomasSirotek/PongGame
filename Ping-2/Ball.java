@@ -15,7 +15,7 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
-    private int speed = 2;
+    private int speed = 1;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
     private boolean hasTouchedPaddle;
@@ -68,12 +68,13 @@ public class Ball extends Actor
     {
        int scalePercent = 20;
        for (GreenfootImage image : myGif.getImages())
-    {
+        {
         int wide = image.getWidth()*scalePercent/100;
         int high = image.getHeight()*scalePercent/100;
         image.scale(wide, high);
+        setRotation(5);
+        }
     }
-}
     }
 
     private void checkHits(){
@@ -154,6 +155,7 @@ public class Ball extends Actor
     private void checkPaddleCollision(){
         Paddle p = checkPlayerPaddleCollision();
         CPUPaddle cp = checkCPUPaddleCollision();
+        
         if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
                     revertVertically();
@@ -168,7 +170,7 @@ public class Ball extends Actor
         }
      
     private Paddle checkPlayerPaddleCollision(){
-        List<Paddle> p = getObjectsAtOffset(-1, 0, Paddle.class);
+        List<Paddle> p = getObjectsAtOffset(0, 0, Paddle.class);
         if(p.isEmpty()){
             return null;
         } else {
@@ -200,14 +202,9 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
-           
-           // init();
-           // 
              hb.dealDamage(1);
              init(speed);
              setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
-             
-            
         }
     }
 
@@ -234,7 +231,7 @@ public class Ball extends Actor
     /**
      * Initialize the ball settings.
      */
-    private void init(int speed)
+    private void init(double speed)
     {
         speed = 2;
         delay = DELAY_TIME;
