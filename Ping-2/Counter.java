@@ -49,7 +49,7 @@ public class Counter extends Actor
     public Counter(String prefix)
     {
         background = getImage();  // get image from class
-        value = 2000; // time in miliseconds 
+        value = 6000; // time in miliseconds 
         target = 0;
         this.prefix = prefix;
         updateImage();
@@ -60,12 +60,8 @@ public class Counter extends Actor
      */
     public void act() 
     {
-        if (value < target) {
-            value++;
-            updateImage();
-        }
-        else if (value > target) {
-            value--;
+        if (value > target) {
+            value -= 8;
             updateImage();
         }
     }
@@ -89,8 +85,7 @@ public class Counter extends Actor
      */
     public double getValue()
     {
-        double seconds = TimeUnit.SECONDS.toSeconds(value);
-       // double test  = Math.floor(seconds % 60);
+        double seconds = TimeUnit.MILLISECONDS.toSeconds(value);
         return seconds;
     }
 
@@ -120,7 +115,7 @@ public class Counter extends Actor
     private void updateImage()
     {
         GreenfootImage image = new GreenfootImage(background);
-        GreenfootImage text = new GreenfootImage(prefix + value, 25, Color.BLACK, transparent);
+        GreenfootImage text = new GreenfootImage(prefix + value / 1000, 25, Color.BLACK, transparent);
         
         if (text.getWidth() > image.getWidth() - 20)
         {

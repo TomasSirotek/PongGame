@@ -17,7 +17,6 @@ public class CPUPaddle extends Actor
     
      public CPUPaddle(int width, int height)
     {
-        // p = (PingWorld)getWorld();
         this.width = width;
         this.height = height;
         damageLevel = 3;
@@ -42,7 +41,6 @@ public class CPUPaddle extends Actor
         GreenfootImage image = getImage();  
         image.scale(80,50); 
         setImage(image);
-        
     }
     
     /**
@@ -52,7 +50,7 @@ public class CPUPaddle extends Actor
     {
     if(getX() + width/2 >= getWorld().getWidth() || getX() - width/2 <= 0)
         {
-            setLocation(60, Greenfoot.getRandomNumber(360));
+            setLocation(60, Greenfoot.getRandomNumber(300));
         }
     }
     
