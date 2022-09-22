@@ -1,13 +1,6 @@
 #BlueJ class context
 comment0.target=Screen
 comment0.text=\n\ Screen\ class\ that\ sets\ up\ new\ screen\ with\ generic\ resolution\n\ Take\ pictureURL\ and\ 0\ -\ to\ display\ instruction\ and\ 1\ -\ not\ to\ display\ them\n
-comment1.params=pictureURL\ instructions\ switchStage
-comment1.target=Screen(java.lang.String,\ java.lang.String,\ int)
-comment2.params=
-comment2.target=void\ act()
-comment3.params=switchStage
-comment3.target=void\ hasInstructions(int)
-comment3.text=\n\ \ 0\ to\ display\ instruction/additional\ text,\ 1\ not\ to\ display\ them\n
-comment4.params=
-comment4.target=void\ setBg()
-numComments=5
+comment1.params=pictureURL
+comment1.target=Screen(java.lang.String)
+numComments=2

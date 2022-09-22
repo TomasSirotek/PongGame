@@ -9,9 +9,9 @@ import greenfoot.*;
  */
 public class Paddle extends Actor
 {
-    private int width;
-    private int height;
-    private int dx;
+    private int width,
+                height,
+                dx;
     private GreenfootImage image;
     /**
      * Constructs a new paddle with the given dimensions.
@@ -62,7 +62,7 @@ public class Paddle extends Actor
     private void createImage()
     {
       setImage(image);  
-      image.scale(140,60);
+      image.scale(width,height);
     }
 
 }
