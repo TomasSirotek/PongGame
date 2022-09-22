@@ -58,7 +58,7 @@ public class PingWorld extends Resolution
         background.setColor(Color.BLACK);
         addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
         addObject(new Paddle(100,20), 60, WORLD_HEIGHT + 20);
-        addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(400));
+        addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(320));
         addObject(lb,470, WORLD_HEIGHT - 680);
         addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
         addObject(hb,60, WORLD_HEIGHT - 680);

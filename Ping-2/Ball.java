@@ -85,7 +85,7 @@ public class Ball extends Actor
            hit++;
            cp.dealDamage(1);
       }
-      if(hit%2 == 0){
+      if(hit%10 == 0){
            speed++;
            w.getLevelBoard().incrementScore(1);            
           

@@ -22,12 +22,12 @@ public class IntroWorld extends Resolution
     
     public void act()
     {
-        SoundManager.playStartMusic();
+       // SoundManager.playStartMusic();
         String key = Greenfoot.getKey();
        
              if (key != null && key.equals("enter"))
              {
-                SoundManager.stopStartMusic();
+                //SoundManager.stopStartMusic();
                 Greenfoot.setWorld(new PingWorld(true));
              }
 }    
