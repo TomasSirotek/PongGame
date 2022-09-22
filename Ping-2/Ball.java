@@ -51,7 +51,6 @@ public class Ball extends Actor
              delay--;
         }
         if(w.getGameStatus() == GameState.NOT_PLAYING){
-                // play cool soundTrack  
         }
     
         else if(w.getGameStatus() == GameState.PLAYING || w.getGameStatus() != GameState.LOST  )

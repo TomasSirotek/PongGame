@@ -13,6 +13,7 @@ public class PingWorld extends Resolution
     LevelBoard lb;
     Counter c;
     SoundManager sm;
+    Paddle p;
     
     /**
      * Constructor for objects of class PingWorld.
@@ -54,10 +55,11 @@ public class PingWorld extends Resolution
         lb = new LevelBoard();
         c = new Counter();
         hb = new HealthBar(3);
+        p = new Paddle(100,20);
         GreenfootImage background = getBackground();
         background.setColor(Color.BLACK);
         addObject(new Ball(), WORLD_WIDTH/2, WORLD_HEIGHT/2);
-        addObject(new Paddle(100,20), 60, WORLD_HEIGHT + 20);
+        addObject(p, 60, WORLD_HEIGHT - 20);
         addObject(new CPUPaddle(100,20),60, Greenfoot.getRandomNumber(320));
         addObject(lb,470, WORLD_HEIGHT - 680);
         addObject(c,WORLD_WIDTH/2, WORLD_HEIGHT/2 - 300);
@@ -78,6 +80,9 @@ public class PingWorld extends Resolution
     
     public SoundManager getSoundManager(){
         return sm;
+    }
+    public Paddle getPaddle(){
+        return p;
     }
 
 

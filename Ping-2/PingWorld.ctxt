@@ -16,4 +16,6 @@ comment6.params=
 comment6.target=HealthBar\ getHealthBar()
 comment7.params=
 comment7.target=SoundManager\ getSoundManager()
-numComments=8
+comment8.params=
+comment8.target=Paddle\ getPaddle()
+numComments=9
