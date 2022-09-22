@@ -17,7 +17,7 @@
     <img src="https://user-images.githubusercontent.com/72190589/191777919-fc644c5a-427d-4a36-8729-0b62aa559743.png" alt="Logo" width="450">
   </a>
 
-  <h3 align="center">Pong game Halloween theme 🕷️</h3>
+  <h3 align="center">🕷️ Pong game Halloween theme 🕷️</h3>
   
 
   <p align="center">
