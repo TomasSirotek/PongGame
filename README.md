@@ -87,7 +87,7 @@ Distributed under the MIT License. See LICENSE for more information.
 
 All the content and pictures were borrowed from the internet 
 and I DO NOT OWN any of the content taken and will not be published anywhere !
-Codebase that does basic movement of the ball and bounces of the wall were provided by our teachers everything around was made by us :)
+Codebase that does basic movement of the ball and bounces of the wall were provided by our teachers :)
 
 
 Mandatory assignment 2022 SCO project posted here on GitHub.
