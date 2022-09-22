@@ -1,11 +1,5 @@
 import greenfoot.*;
 
-/**
- * Write a description of class Resolution here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Resolution extends World
 {
    protected static final int WORLD_WIDTH = 500;

@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class HealthBar here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class HealthBar extends Actor
 {
     public static int health;
@@ -31,7 +25,6 @@ public class HealthBar extends Actor
         if (health >= 3) {
                 setImage("heart3.png");
                 getImage().scale(90,90);
-                // play crack sound
             }
          if (health <= 2) {
                 setImage("heart2.png");
