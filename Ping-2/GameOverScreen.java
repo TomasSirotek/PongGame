@@ -10,7 +10,7 @@ public class GameOverScreen extends Resolution
     {
         addObject( new Screen("startHalloween.jpg","You LOST :( " + 
         "\n Highest achieved score : "+
-        LevelBoardManager.getScore() + 
+        LevelBoard.getScore() + 
         "\n Press <Enter> to Restart !",0
         ), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
     }

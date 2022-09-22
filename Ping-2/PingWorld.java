@@ -9,7 +9,6 @@ import greenfoot.*;
 public class PingWorld extends Resolution
 {
     HealthBar hb;
-    LevelBoardManager lbm;
     LevelBoard lb;
     GameState state;
     Counter c;
@@ -28,8 +27,6 @@ public class PingWorld extends Resolution
     }
 
     public void act(){
-        String key = Greenfoot.getKey();
-
         if (state == GameState.NOT_PLAYING) 
         {
             if (c.getValue() == 0 )
@@ -70,9 +67,9 @@ public class PingWorld extends Resolution
         return state;
     } 
     
-    public LevelBoardManager getLevelBoardManager(){
-        return lbm;
-    }
+    // public LevelBoardManager getLevelBoardManager(){
+        // return lbm;
+    // }
     
     public LevelBoard getLevelBoard(){
         return lb;

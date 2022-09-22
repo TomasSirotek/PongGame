@@ -26,6 +26,7 @@ public class Ball extends Actor
     private double hitLocation;
     
     PingWorld w;
+    // LevelBoardManager lb;
     GifImage myGif = new GifImage("pumpkin.gif");
 
     /**
@@ -33,7 +34,7 @@ public class Ball extends Actor
      */
     public Ball()
     {
-        w = (PingWorld)getWorld();
+        // w = (PingWorld)getWorld();
         hit = 0;
         animationOfGif();
         speed = 2;
@@ -82,14 +83,14 @@ public class Ball extends Actor
 
     private void checkHits(){
        CPUPaddle cp = checkCPUPaddleCollision();
-        if(cp != null){
+        if(cp != null && w != null){
            hit++;
            cp.dealDamage(1);
       }
       if(hit%2 == 0){
            speed++;
-           // TODO: Fix problem null exceptions !
-           //w.getLevelBoardManager().incrementScore(1);
+           w.getLevelBoard().incrementScore(1);            
+          
         }
     }
     /**

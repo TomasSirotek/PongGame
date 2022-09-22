@@ -17,6 +17,7 @@ public class CPUPaddle extends Actor
     
      public CPUPaddle(int width, int height)
     {
+        // p = (PingWorld)getWorld();
         this.width = width;
         this.height = height;
         damageLevel = 3;
@@ -29,6 +30,7 @@ public class CPUPaddle extends Actor
      */
     public void act()
     {
+        p = (PingWorld)getWorld();
         setImageDamage();
         tryChangeDirection();
         setLocation(getX() + dx, getY());
@@ -59,8 +61,7 @@ public class CPUPaddle extends Actor
                 setImage("bone.png");
                 getImage().scale(80,50);
                 // play crack sound
-            }
-         if (damageLevel <= 2) {
+}         if (damageLevel <= 2) {
                 setImage("bone_stage_1.png");
                 getImage().scale(80,50);
             }
@@ -72,8 +73,9 @@ public class CPUPaddle extends Actor
                this.setLocation(60, Greenfoot.getRandomNumber(400));
                damageLevel = 3;
                setImage("bone.png");
-              // p.getHealthBar().healthUp(1);  
-              // TODO: Fix problem null exceptions !
+               //if(p != null){
+                  p.getHealthBar().healthUp(1); 
+               // }
         }
     }
     

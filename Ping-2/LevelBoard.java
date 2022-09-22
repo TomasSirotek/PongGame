@@ -9,14 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LevelBoard extends Actor
 {
     private static final Color transparent = new Color(0,0,0,0);
-    public  int score;
+    public  static int score;
     private String prefix;
     private GreenfootImage background;
+    
+    PingWorld w;
 
     public LevelBoard()
     {
-        this(new String());
-        score = 0;
+        this(new String());      
     }
 
     public LevelBoard(String prefix){
@@ -27,12 +28,20 @@ public class LevelBoard extends Actor
     }
 
     public void act(){
-        score = LevelBoardManager.getScore();
-        updateImage();
+       score = score;    
+       updateImage();
     }
     
     public void resetScore(){
         score = 0;
+    }
+    
+    public static int getScore(){
+        return score;
+    }
+    
+    public void incrementScore(int howMuch){
+        score += howMuch;
     }
 
     public void setPrefix(String prefix)
