@@ -7,7 +7,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-# Pong game in Greenfoot
+# 🎃 Pong game in Greenfoot 🎃
 :school_satchel: Assignment | 1st Semestr | CS
 
 <!-- PROJECT LOGO -->
@@ -17,7 +17,7 @@
     <img src="https://user-images.githubusercontent.com/72190589/191777919-fc644c5a-427d-4a36-8729-0b62aa559743.png" alt="Logo" width="450">
   </a>
 
-  <h3 align="center">Pong game Halloween theme</h3>
+  <h3 align="center">Pong game Halloween theme 🕷️</h3>
   
 
   <p align="center">
@@ -27,7 +27,7 @@
     <br />
     <br />
     :hammer:<a href="https://github.com/TomassSimko/PongGame/issues">Report Bug</a>
-    📄 <a href="https://github.com/TomassSimko/UML-diagram">UML Diagram</a>
+    📄 <a href="https://github.com/TomassSimko/PongGame/tree/main/UML">UML Diagram</a>
     
     
   </p>
