@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.concurrent.TimeUnit;
 /**
  * A Counter class that allows you to display a numerical value on screen.
  * 
@@ -34,7 +34,7 @@ public class Counter extends Actor
 {
     private static final Color transparent = new Color(0,0,0,0);
     private GreenfootImage background;
-    private int value;
+    private long value;
     private  int target;
     private String prefix;
     
@@ -49,7 +49,7 @@ public class Counter extends Actor
     public Counter(String prefix)
     {
         background = getImage();  // get image from class
-        value = 150;
+        value = 2000; // time in miliseconds 
         target = 0;
         this.prefix = prefix;
         updateImage();
@@ -87,9 +87,11 @@ public class Counter extends Actor
     /**
      * Return the current counter value.
      */
-    public int getValue()
+    public double getValue()
     {
-        return value;
+        double seconds = TimeUnit.SECONDS.toSeconds(value);
+       // double test  = Math.floor(seconds % 60);
+        return seconds;
     }
 
     /**
