@@ -44,7 +44,7 @@ public class SoundManager
     }
     
     public static void playStartMusic(){
-        startSound.playLoop();
+        startSound.play();
     }
     
     public static void playBoneCrack(){

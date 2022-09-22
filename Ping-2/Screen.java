@@ -35,8 +35,8 @@ public class Screen extends Actor
     
     private void setBg(){
         getImage().scale((int)(getWorld().getWidth()),(int)(getWorld().getHeight()));
-        Instructions i = new Instructions(instructions,25, Color.ORANGE, Color.BLACK);
-        getWorld().addObject(i,500,170);
-        i.setLocation(getWorld().getWidth()/2,getWorld().getHeight()/4);
+        Instructions i = new Instructions(instructions,22, Color.ORANGE, Color.BLACK);
+        getWorld().addObject(i,100,100);
+        i.setLocation(getWorld().getWidth()/2,getWorld().getHeight()/2 + 100);
     }
 }
