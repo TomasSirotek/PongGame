@@ -8,7 +8,7 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 # 🎃 Pong game in Greenfoot 🎃
-:school_satchel: Assignment | 1st Semestr | CS
+:school_satchel: Week Assignment | 1st Semestr | CS
 
 <!-- PROJECT LOGO -->
 <br />
