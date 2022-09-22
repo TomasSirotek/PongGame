@@ -60,7 +60,6 @@ public class CPUPaddle extends Actor
          if (damageLevel >= 3) {
                 setImage("bone.png");
                 getImage().scale(80,50);
-                // play crack sound
 }         if (damageLevel <= 2) {
                 setImage("bone_stage_1.png");
                 getImage().scale(80,50);
@@ -73,9 +72,7 @@ public class CPUPaddle extends Actor
                this.setLocation(60, Greenfoot.getRandomNumber(400));
                damageLevel = 3;
                setImage("bone.png");
-               //if(p != null){
-                  p.getHealthBar().healthUp(1); 
-               // }
+               p.getHealthBar().healthUp(1); 
         }
     }
     

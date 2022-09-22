@@ -8,9 +8,9 @@ import greenfoot.*;
  */
 public class PingWorld extends Resolution
 {
+    private static GameState state;
     HealthBar hb;
     LevelBoard lb;
-    GameState state;
     Counter c;
     SoundManager sm;
     
@@ -33,12 +33,14 @@ public class PingWorld extends Resolution
             {
                 removeObject(c);
                 state = GameState.PLAYING;
+                SoundManager.playThemeMusic();
             } 
         }
         else if ( state == GameState.PLAYING )
         {
             if (hb.getHealth() == 0)
             {
+                SoundManager.stopThemeMusic();
                 state = GameState.LOST;
             } 
         }
@@ -66,10 +68,6 @@ public class PingWorld extends Resolution
     {
         return state;
     } 
-    
-    // public LevelBoardManager getLevelBoardManager(){
-        // return lbm;
-    // }
     
     public LevelBoard getLevelBoard(){
         return lb;

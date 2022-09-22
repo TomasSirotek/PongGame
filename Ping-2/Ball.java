@@ -26,7 +26,6 @@ public class Ball extends Actor
     private double hitLocation;
     
     PingWorld w;
-    // LevelBoardManager lb;
     GifImage myGif = new GifImage("pumpkin.gif");
 
     /**
@@ -34,7 +33,6 @@ public class Ball extends Actor
      */
     public Ball()
     {
-        // w = (PingWorld)getWorld();
         hit = 0;
         animationOfGif();
         speed = 2;
@@ -127,6 +125,7 @@ public class Ball extends Actor
         {
             if (! hasBouncedHorizontally)
             {
+                SoundManager.playHitWalls();
                 revertHorizontally();
             }
         }
@@ -146,6 +145,7 @@ public class Ball extends Actor
         {
             if (!hasBouncedVertically)
             {
+                SoundManager.playHitWalls();
                 revertVertically();
                 canSeePaddle = false;
             }
@@ -163,10 +163,11 @@ public class Ball extends Actor
         
         if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
+                    SoundManager.playHitPaddle();
                     revertVertically();
-                    w.getSoundManager().playHitPaddle();
                     if(cp != null){
                         checkHits();
+                        SoundManager.playBoneCrack();
                     }       
             }
             } else {
@@ -207,6 +208,7 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
+             SoundManager.playHitFloor();
              w.getHealthBar().dealDamage(1);
              init(speed);
              setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);

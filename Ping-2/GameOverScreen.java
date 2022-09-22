@@ -13,8 +13,10 @@ public class GameOverScreen extends Resolution
         LevelBoard.getScore() + 
         "\n Press <Enter> to Restart !",0
         ), (int)(getWidth() * 0.5), (int)(getHeight() * 0.5));
+        SoundManager.playGameOverSound();
     }
     public void act(){
+       
           String key = Greenfoot.getKey();
           if (key != null && key.equals("enter"))
             {

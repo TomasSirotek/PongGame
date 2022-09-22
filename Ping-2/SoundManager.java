@@ -12,15 +12,21 @@ public class SoundManager
     private static GreenfootSound hitSoundCeiling;
     private static GreenfootSound hitSoundWalls;
     private static GreenfootSound hitSoundFloor;
-    private static GreenfootSound defaultSound;
+    private static GreenfootSound startSound;
+    private static GreenfootSound boneCrack;
+    private static GreenfootSound gameSound;
+    private static GreenfootSound gameOverSound;
+    
 
     static {
         try{
-            hitSoundPaddle = new GreenfootSound("hit.wav"); 
-            hitSoundCeiling = new GreenfootSound("hit.wav"); 
-            hitSoundWalls = new GreenfootSound("hit.wav"); 
-            hitSoundFloor = new GreenfootSound("hit.wav"); 
-            defaultSound = new GreenfootSound("hit.wav"); 
+            hitSoundPaddle = new GreenfootSound("oof.mp3"); 
+            hitSoundWalls = new GreenfootSound("bounce.mp3"); 
+            hitSoundFloor = new GreenfootSound("wrong.mp3"); 
+            startSound = new GreenfootSound("start_music.mp3"); 
+            boneCrack = new GreenfootSound("bone_crack.mp3"); 
+            gameSound = new GreenfootSound("theme_music.mp3"); 
+            gameOverSound = new GreenfootSound("game_over.mp3"); 
         }catch(Exception e){
             System.out.print(e);
         }
@@ -30,10 +36,6 @@ public class SoundManager
         hitSoundPaddle.play();
     }
     
-    public static void playHitCeiling(){
-        hitSoundCeiling.play();
-    }
-    
     public static void playHitWalls(){
         hitSoundWalls.play();
     }
@@ -41,8 +43,31 @@ public class SoundManager
         hitSoundFloor.play();
     }
     
-    public static void playDefaultSong(){
-        defaultSound.play();
+    public static void playStartMusic(){
+        startSound.playLoop();
     }
+    
+    public static void playBoneCrack(){
+        boneCrack.play();
+    }
+    
+    public static void playThemeMusic(){
+        gameSound.playLoop();
+        gameSound.setVolume(50);
+    }
+    
+     public static void stopThemeMusic(){
+        gameSound.stop();
+    }
+    
+    public static void stopStartMusic(){
+        startSound.stop();
+    }
+    
+     public static void playGameOverSound(){
+        gameOverSound.play();
+    }
+    
+    
 
 }
