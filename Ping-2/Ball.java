@@ -12,19 +12,20 @@ public class Ball extends Actor
 {
     private static final int BALL_SIZE = 25;
     private static final int BOUNCE_DEVIANCE_MAX = 5;
-    private static final int STARTING_ANGLE_WIDTH = 90;
+    private static final int STARTING_ANGLE_WIDTH = 45;
     private static final int DELAY_TIME = 100;
 
-    private int speed;
-    private boolean hasBouncedHorizontally;
-    private boolean hasBouncedVertically;
-    private boolean hasTouchedPaddle;
-    private int delay;
-    private int hit;
-    private boolean isReverted;
-    private boolean canSeePaddle;
+    private boolean hasBouncedHorizontally,
+                    hasBouncedVertically,
+                    isReverted,
+                    hasTouchedPaddle,
+                    canSeePaddle,
+                    collision;
     private double hitLocation;
-    
+    private int speed,
+                delay,
+                hit;
+    public Paddle lastPaddleTouched;
     PingWorld w;
     GifImage myGif = new GifImage("pumpkin.gif");
 
@@ -64,6 +65,7 @@ public class Ball extends Actor
             checkRestart();
         }
     }
+    
     
     private void animationOfGif(){
     {
@@ -162,8 +164,15 @@ public class Ball extends Actor
         
         if(p != null || cp != null){
               if(!isReverted && canSeePaddle){
-                    SoundManager.playHitPaddle();
-                    revertVertically();
+                  if(w.collisionTime + 50 < w.time){
+                      collision = false;
+                  }
+                     Paddle collidedPaddle = p;
+                     lastPaddleTouched = collidedPaddle;
+                     SoundManager.playHitPaddle();
+                     collision = true;
+                     revertVertically();
+                     w.collisionTime = w.time;
                     if(cp != null){
                         checkHits();
                         SoundManager.playBoneCrack();
@@ -175,7 +184,7 @@ public class Ball extends Actor
         }
      
     private Paddle checkPlayerPaddleCollision(){
-        Paddle p = (Paddle)getOneObjectAtOffset(0, 0, Paddle.class);
+        Paddle p = (Paddle)getOneObjectAtOffset(-20, 0, Paddle.class);
         if(p == null){
             return null;
         } else {
@@ -207,6 +216,7 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
+             w.collisionTime = w.time;
              SoundManager.playHitFloor();
              w.getHealthBar().dealDamage(1);
              init(speed);
@@ -245,6 +255,7 @@ public class Ball extends Actor
         hasBouncedHorizontally = false;
         hasBouncedVertically = false;
         setRotation(Greenfoot.getRandomNumber(STARTING_ANGLE_WIDTH) + STARTING_ANGLE_WIDTH/2);
+
     }
 
 }
